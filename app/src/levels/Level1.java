@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 /**
  * Created by Jon on 31/10/2016.
+ * Level 1 of program
  */
 public class Level1 {
     public static void main(String[] args) {

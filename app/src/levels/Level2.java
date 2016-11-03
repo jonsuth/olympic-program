@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * Created by Jon on 31/10/2016.
+ * Level 2 of program
  */
 public class Level2 {
     public static void main(String[] args) {
@@ -11,6 +12,7 @@ public class Level2 {
         if (printQuestion().toLowerCase().equals("y")) {
             getMedalCount();
         }
+
 
     }
 
