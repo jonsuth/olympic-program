@@ -1,30 +1,31 @@
 package main;
 
+import main.country.Country;
+
 import java.util.*;
 
 /**
  * Created by Jon on 31/10/2016.
+ * Olympic Program
  */
 public class OlympicProgram {
     public static void main(String[] args) {
+        Country country = new Country("GB", 27, 23, 17, 67);
+        printTable(country);
 
         if (printQuestion().toLowerCase().equals("y")) {
-            getMedalCount();
+            country = updateMedalCount(country);
+            printTable(country);
         }
 
     }
 
-    private static void getMedalCount() {
-        final int GOLD = 27;
-        final int SILVER = 23;
-        final int BRONZE = 17;
-        final int TOTAL = 67;
-        int gold = getGoldCount() + GOLD;
-        int silver = getSilverCount() + SILVER;
-        int bronze = getBronzeCount() + BRONZE;
-        int total = TOTAL + gold + silver + bronze;
-        printTable(gold, silver, bronze, total);
-        System.out.println();
+    private static Country updateMedalCount(Country country) {
+        country.setGoldMedals(getGoldCount());
+        country.setSilverMedals(getSilverCount());
+        country.setBronzeMedals(getBronzeCount());
+        country.updateTotal();
+        return country;
     }
 
     private static int getGoldCount() {
@@ -47,12 +48,20 @@ public class OlympicProgram {
 
     private static String printQuestion() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Would you like to see the GB medal table? (Y/N)");
+        System.out.println("Would you like to update the medal table? (Y/N)");
         return sc.nextLine();
     }
 
-    private static void printTable(int gold, int silver, int bronze, int total) {
+    private static void printTable(Country country) {
         System.out.println("                G    S    B   Total");
-        System.out.println("Great Britain   " + gold + "   " + silver + "   " + bronze + "   " + total);
+        System.out.println("Great Britain   " + country.getGoldMedals() + "   " + country.getSilverMedals() + "   "
+                + country.getBronzeMedals() + "   "
+                + country.getTotal());
+        System.out.println();
     }
+
+    private static void queryMedals() {
+
+    }
+
 }
