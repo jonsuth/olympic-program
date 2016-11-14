@@ -13,11 +13,14 @@ public class OlympicProgram {
         Country country = new Country("GB", 27, 23, 17, 67);
         printTable(country);
 
-        if (printQuestion().toLowerCase().equals("y")) {
+        if (printQuestion1().toLowerCase().equals("y")) {
             country = updateMedalCount(country);
             printTable(country);
         }
 
+        if (printQuestion2().toLowerCase().equals("y")) {
+            queryMedals(country);
+        }
     }
 
     private static Country updateMedalCount(Country country) {
@@ -46,9 +49,15 @@ public class OlympicProgram {
         return sc.nextInt();
     }
 
-    private static String printQuestion() {
+    private static String printQuestion1() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Would you like to update the medal table? (Y/N)");
+        return sc.nextLine();
+    }
+
+    private static String printQuestion2() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Would you like to see specific medal counts? (Y/N)");
         return sc.nextLine();
     }
 
@@ -60,8 +69,31 @@ public class OlympicProgram {
         System.out.println();
     }
 
-    private static void queryMedals() {
+    private static void queryMedals(Country country) {
+        Scanner sc = new Scanner(System.in);
+        String input;
 
+        while (true) {
+            System.out.println("\n1 = Gold \n2 = Silver \n3 = Bronze \nq = quit");
+            System.out.println("Please choose an option");
+            input = sc.nextLine();
+
+            switch (input) {
+                case "1":
+                    System.out.println("The Great Britain Gold medal count is: " + country.getGoldMedals());
+                    break;
+                case "2":
+                    System.out.println("The Great Britain Silver medal count is: " + country.getSilverMedals());
+                    break;
+                case "3":
+                    System.out.println("The Great Britain Bronze medal count is: " + country.getBronzeMedals());
+                    break;
+            }
+
+            if (input.toLowerCase().equals("q")) {
+                return;
+            }
+        }
     }
 
 }
