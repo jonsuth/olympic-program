@@ -70,5 +70,9 @@ public class Country {
                 + this.silverHistory.get(day)
                 + this.bronzeHistory.get(day));
     }
+
+    public int getSize() {
+        return totalHistory.size() - 1;
+    }
 }
 

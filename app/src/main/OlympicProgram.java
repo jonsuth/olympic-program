@@ -23,6 +23,7 @@ public class OlympicProgram {
             }
             printTable(country, day);
         }
+        queryMedals(country);
     }
 
     private static Country updateMedalCount(Country country, int day) {
@@ -67,7 +68,7 @@ public class OlympicProgram {
 
     private static String printQuestion2() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Would you like to see specific medal counts? (Y/N)");
+        System.out.println("Would you like to see medal counts for specific days? (Y/N)");
         return sc.nextLine();
     }
 
@@ -81,32 +82,24 @@ public class OlympicProgram {
         System.out.println();
     }
 
-    private static void queryMedals(Country country, int day) {
+    private static void queryMedals(Country country) {
         Scanner sc = new Scanner(System.in);
         String input;
-
-        while (true) {
-            System.out.println("\n1 = Gold \n2 = Silver \n3 = Bronze \nq = quit");
-            System.out.println("Please choose an option");
-            input = sc.nextLine();
-
-            switch (input) {
-                case "1":
-                    System.out.println("The " + country.getName() + " Gold medal count is: "
-                            + country.getGoldMedals(day));
+        if (printQuestion2().toLowerCase().equals("y")) {
+            while (true) {
+                System.out.println("What day would you like to see medal counts for ('q' to quit, 'a' for all)?");
+                input = sc.nextLine();
+                if (input.toLowerCase().equals("q")) {
                     break;
-                case "2":
-                    System.out.println("The " + country.getName() + " Silver medal count is: "
-                            + country.getSilverMedals(day));
-                    break;
-                case "3":
-                    System.out.println("The " + country.getName() + " medal count is: "
-                            + country.getBronzeMedals(day));
-                    break;
-            }
-
-            if (input.toLowerCase().equals("q")) {
-                return;
+                } else if (input.toLowerCase().equals("a")) {
+                    for (int day = 0; day <= country.getSize(); day ++) {
+                        System.out.println("Medal count for day: " + day);
+                        printTable(country, day);
+                    }
+                } else if (Integer.parseInt(input) <= country.getSize() && Integer.parseInt(input) >= 0) {
+                    System.out.println("Medal count for day: " + input);
+                    printTable(country, Integer.parseInt(input));
+                }
             }
         }
     }
