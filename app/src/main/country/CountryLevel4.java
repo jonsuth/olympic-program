@@ -2,9 +2,9 @@ package main.country;
 
 /**
  * Created by Jon Suthakaran on 03/11/2016.
- * Country class
+ * Level 4 implementation of Country class
  */
-public class Country {
+public class CountryLevel4 {
     private String name;
     private int[] goldHistory = new int[4];
     private int[] silverHistory = new int[4];
@@ -12,18 +12,18 @@ public class Country {
     private int[] totalHistory = new int[4];
 
 
-    public Country(String name) {
+    public CountryLevel4(String name) {
         this.name = name;
     }
 
-    public Country(String name, int goldMedals, int silverMedals, int bronzeMedals) {
+    public CountryLevel4(String name, int goldMedals, int silverMedals, int bronzeMedals) {
         this.name = name;
         this.goldHistory[0] = goldMedals;
         this.silverHistory[0] = silverMedals;
         this.bronzeHistory[0] = bronzeMedals;
     }
 
-    public Country(String name, int goldMedals, int silverMedals, int bronzeMedals, int total) {
+    public CountryLevel4(String name, int goldMedals, int silverMedals, int bronzeMedals, int total) {
         this.name = name;
         this.goldHistory[0] = goldMedals;
         this.silverHistory[0] = silverMedals;

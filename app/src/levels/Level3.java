@@ -1,6 +1,7 @@
+
 package levels;
 
-import main.country.Country;
+import main.country.CountryLevel3;
 
 import java.util.Scanner;
 
@@ -8,9 +9,10 @@ import java.util.Scanner;
  * Created by Jon Suthakaran on 03/11/2016.
  * Level 3 of program
  */
+
 public class Level3 {
     public static void main(String[] args) {
-        Country country = new Country("GB", 27, 23, 17, 67);
+        CountryLevel3 country = new CountryLevel3("GB", 27, 23, 17, 67);
         printTable(country);
 
         if (printQuestion1().toLowerCase().equals("y")) {
@@ -23,7 +25,7 @@ public class Level3 {
         }
     }
 
-    private static Country updateMedalCount(Country country) {
+    private static CountryLevel3 updateMedalCount(CountryLevel3 country) {
         country.setGoldMedals(getGoldCount());
         country.setSilverMedals(getSilverCount());
         country.setBronzeMedals(getBronzeCount());
@@ -61,7 +63,7 @@ public class Level3 {
         return sc.nextLine();
     }
 
-    private static void printTable(Country country) {
+    private static void printTable(CountryLevel3 country) {
         System.out.println("                G    S    B   Total");
         System.out.println("Great Britain   " + country.getGoldMedals() + "   " + country.getSilverMedals() + "   "
                 + country.getBronzeMedals() + "   "
@@ -69,7 +71,7 @@ public class Level3 {
         System.out.println();
     }
 
-    private static void queryMedals(Country country) {
+    private static void queryMedals(CountryLevel3 country) {
         Scanner sc = new Scanner(System.in);
         String input;
 
@@ -97,3 +99,4 @@ public class Level3 {
     }
 
 }
+

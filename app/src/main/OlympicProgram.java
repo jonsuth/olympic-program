@@ -11,23 +11,33 @@ import java.util.*;
 public class OlympicProgram {
     public static void main(String[] args) {
         Country country = new Country("GB", 27, 23, 17, 67);
-        printTable(country);
+        System.out.println("Starting medal count Day: 0");
+        printTable(country, 0);
 
-        if (printQuestion1().toLowerCase().equals("y")) {
-            country = updateMedalCount(country);
-            printTable(country);
-        }
-
-        if (printQuestion2().toLowerCase().equals("y")) {
-            queryMedals(country);
+        for (int day = 1; day <= 3; day++) {
+            System.out.println("Day: " + day);
+            if (printQuestion1().toLowerCase().equals("y")) {
+                country = updateMedalCount(country, day);
+            } else {
+                country = preserveMedalCount(country, day);
+            }
+            printTable(country, day);
         }
     }
 
-    private static Country updateMedalCount(Country country) {
-        country.setGoldMedals(getGoldCount());
-        country.setSilverMedals(getSilverCount());
-        country.setBronzeMedals(getBronzeCount());
-        country.updateTotal();
+    private static Country updateMedalCount(Country country, int day) {
+        country.setGoldMedals(getGoldCount(), day);
+        country.setSilverMedals(getSilverCount(), day);
+        country.setBronzeMedals(getBronzeCount(), day);
+        country.updateTotal(day);
+        return country;
+    }
+
+    private static Country preserveMedalCount(Country country, int day) {
+        country.setGoldMedals(0, day);
+        country.setSilverMedals(0, day);
+        country.setBronzeMedals(0, day);
+        country.updateTotal(day);
         return country;
     }
 
@@ -61,15 +71,17 @@ public class OlympicProgram {
         return sc.nextLine();
     }
 
-    private static void printTable(Country country) {
+    private static void printTable(Country country, int day) {
         System.out.println("                G    S    B   Total");
-        System.out.println("Great Britain   " + country.getGoldMedals() + "   " + country.getSilverMedals() + "   "
-                + country.getBronzeMedals() + "   "
-                + country.getTotal());
+        System.out.println("Great Britain   "
+                + country.getGoldMedals(day) + "   "
+                + country.getSilverMedals(day) + "   "
+                + country.getBronzeMedals(day) + "   "
+                + country.getTotal(day));
         System.out.println();
     }
 
-    private static void queryMedals(Country country) {
+    private static void queryMedals(Country country, int day) {
         Scanner sc = new Scanner(System.in);
         String input;
 
@@ -80,13 +92,13 @@ public class OlympicProgram {
 
             switch (input) {
                 case "1":
-                    System.out.println("The Great Britain Gold medal count is: " + country.getGoldMedals());
+                    System.out.println("The Great Britain Gold medal count is: " + country.getGoldMedals(day));
                     break;
                 case "2":
-                    System.out.println("The Great Britain Silver medal count is: " + country.getSilverMedals());
+                    System.out.println("The Great Britain Silver medal count is: " + country.getSilverMedals(day));
                     break;
                 case "3":
-                    System.out.println("The Great Britain Bronze medal count is: " + country.getBronzeMedals());
+                    System.out.println("The Great Britain Bronze medal count is: " + country.getBronzeMedals(day));
                     break;
             }
 
@@ -95,5 +107,4 @@ public class OlympicProgram {
             }
         }
     }
-
 }
