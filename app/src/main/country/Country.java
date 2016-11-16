@@ -34,6 +34,10 @@ public class Country {
         this.total = total;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getGoldMedals() {
         return goldMedals;
     }
