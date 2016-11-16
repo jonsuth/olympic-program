@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class OlympicProgram {
     public static void main(String[] args) {
-        Country country = new Country("GB", 27, 23, 17, 67);
+        Country country = new Country("Great Britain", 27, 23, 17, 67);
         System.out.println("Starting medal count Day: 0");
         printTable(country, 0);
 
@@ -73,7 +73,7 @@ public class OlympicProgram {
 
     private static void printTable(Country country, int day) {
         System.out.println("                G    S    B   Total");
-        System.out.println("Great Britain   "
+        System.out.println(country.getName() + "   "
                 + country.getGoldMedals(day) + "   "
                 + country.getSilverMedals(day) + "   "
                 + country.getBronzeMedals(day) + "   "
@@ -92,13 +92,16 @@ public class OlympicProgram {
 
             switch (input) {
                 case "1":
-                    System.out.println("The Great Britain Gold medal count is: " + country.getGoldMedals(day));
+                    System.out.println("The " + country.getName() + " Gold medal count is: "
+                            + country.getGoldMedals(day));
                     break;
                 case "2":
-                    System.out.println("The Great Britain Silver medal count is: " + country.getSilverMedals(day));
+                    System.out.println("The " + country.getName() + " Silver medal count is: "
+                            + country.getSilverMedals(day));
                     break;
                 case "3":
-                    System.out.println("The Great Britain Bronze medal count is: " + country.getBronzeMedals(day));
+                    System.out.println("The " + country.getName() + " medal count is: "
+                            + country.getBronzeMedals(day));
                     break;
             }
 

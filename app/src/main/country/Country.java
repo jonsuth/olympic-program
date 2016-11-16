@@ -1,15 +1,17 @@
 package main.country;
 
+import java.util.ArrayList;
+
 /**
  * Created by Jon Suthakaran on 03/11/2016.
  * Country class
  */
 public class Country {
     private String name;
-    private int[] goldHistory = new int[4];
-    private int[] silverHistory = new int[4];
-    private int[] bronzeHistory = new int[4];
-    private int[] totalHistory = new int[4];
+    private ArrayList<Integer> goldHistory = new ArrayList<Integer>();
+    private ArrayList<Integer> silverHistory = new ArrayList<Integer>();
+    private ArrayList<Integer> bronzeHistory = new ArrayList<Integer>();
+    private ArrayList<Integer> totalHistory = new ArrayList<Integer>();
 
 
     public Country(String name) {
@@ -18,17 +20,17 @@ public class Country {
 
     public Country(String name, int goldMedals, int silverMedals, int bronzeMedals) {
         this.name = name;
-        this.goldHistory[0] = goldMedals;
-        this.silverHistory[0] = silverMedals;
-        this.bronzeHistory[0] = bronzeMedals;
+        this.goldHistory.add(0, goldMedals);
+        this.silverHistory.add(0, silverMedals);
+        this.bronzeHistory.add(0, bronzeMedals);
     }
 
     public Country(String name, int goldMedals, int silverMedals, int bronzeMedals, int total) {
         this.name = name;
-        this.goldHistory[0] = goldMedals;
-        this.silverHistory[0] = silverMedals;
-        this.bronzeHistory[0] = bronzeMedals;
-        this.totalHistory[0] = total;
+        this.goldHistory.add(0, goldMedals);
+        this.silverHistory.add(0, silverMedals);
+        this.bronzeHistory.add(0, bronzeMedals);
+        this.totalHistory.add(0, total);
     }
 
     public String getName() {
@@ -36,35 +38,37 @@ public class Country {
     }
 
     public int getGoldMedals(int day) {
-        return goldHistory[day];
+        return goldHistory.get(day);
     }
 
     public void setGoldMedals(int goldMedals, int day) {
-        this.goldHistory[day] = this.goldHistory[day-1] + goldMedals;
+        this.goldHistory.add(day, this.goldHistory.get(day-1) + goldMedals);
     }
 
     public int getSilverMedals(int day) {
-        return silverHistory[day];
+        return silverHistory.get(day);
     }
 
     public void setSilverMedals(int silverMedals, int day) {
-        this.silverHistory[day] = this.silverHistory[day-1] + silverMedals;
+        this.silverHistory.add(day, this.silverHistory.get(day-1) + silverMedals);
     }
 
     public int getBronzeMedals(int day) {
-        return bronzeHistory[day];
+        return bronzeHistory.get(day);
     }
 
     public void setBronzeMedals(int bronzeMedals, int day) {
-        this.bronzeHistory[day] = this.bronzeHistory[day-1] + bronzeMedals;
+        this.bronzeHistory.add(day, this.bronzeHistory.get(day-1) + bronzeMedals);
     }
 
     public int getTotal(int day) {
-        return totalHistory[day];
+        return totalHistory.get(day);
     }
 
     public void updateTotal(int day) {
-        this.totalHistory[day] = this.goldHistory[day] + this.silverHistory[day] + this.bronzeHistory[day];
+        this.totalHistory.add(day, this.goldHistory.get(day)
+                + this.silverHistory.get(day)
+                + this.bronzeHistory.get(day));
     }
 }
 
