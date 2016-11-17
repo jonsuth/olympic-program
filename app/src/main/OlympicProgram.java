@@ -99,6 +99,8 @@ public class OlympicProgram {
                 } else if (Integer.parseInt(input) <= country.getSize() && Integer.parseInt(input) >= 0) {
                     System.out.println("Medal count for day: " + input);
                     printTable(country, Integer.parseInt(input));
+                } else {
+                    System.out.println("Error - Day does not exist, please try again");
                 }
             }
         }
