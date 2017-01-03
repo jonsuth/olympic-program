@@ -24,27 +24,28 @@ public class OlympicProgram {
             }
 
             System.out.println("1. Add new country to the program");
-            System.out.println("2. Select country");
-            System.out.println("3. Quit");
+            System.out.println("2. Update country medal table");
+            System.out.println("3. View all countries");
+            System.out.println("4. Quit");
             input = sc.nextLine();
 
             switch (input) {
                 case "1":
                     countryList.add(createCountry());
                     break;
-                case "2":
+                case "3":
                     countryList.printAllCountries();
                     break;
-                case "3":
-                    System.out.println("nothing");
-                    break;
+            }
+            if (input.equals("3")) {
+                break;
             }
         }
     }
 
     /**
-     *
-     * @return
+     * Creates a country object and asks for the name, gold, silver and bronze medal count for the current day.
+     * @return country
      */
     private static Country createCountry() {
         Scanner sc = new Scanner(System.in);
@@ -57,6 +58,7 @@ public class OlympicProgram {
         name = sc.nextLine();
         Country country = new Country(name);
 
+        System.out.println("What is the gold medal count of " + country.getName() + " for today?");
         System.out.println("What is the gold medal count of " + country.getName() + " for today?");
         gold = sc.nextInt();
         sc.nextLine();
@@ -74,5 +76,28 @@ public class OlympicProgram {
         System.out.println("Country added successfully!");
         System.out.println();
         return country;
+    }
+
+    private static Country searchCountry(CountryList countryList) {
+        Scanner sc = new Scanner(System.in);
+        String name;
+
+        while (true) {
+            System.out.println();
+            System.out.println("Please enter the name of the country? (Press 'q' to quit)");
+            name = sc.nextLine();
+            if (name.toLowerCase().equals("q")) {
+                break;
+            }
+            Country country = countryList.searchCountry(name);
+            if (country == null) {
+                System.out.println("No such country found, please try again");
+            } else {
+                return country;
+            }
+        }
+
+        return null;
+
     }
 }

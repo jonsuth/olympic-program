@@ -50,7 +50,7 @@ public class MedalTable {
     /**
      * Get the medal count for for a specific medal type on a specific day
      * @param day
-     * @param medalType = gold/silver/bronze
+     * @param medalType = gold/silver/bronze/total
      * @return medal count for chosen medal and day
      */
     public int getMedal(int day, String medalType) {

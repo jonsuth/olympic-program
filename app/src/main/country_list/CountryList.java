@@ -1,6 +1,8 @@
 package main.country_list;
 
 import main.country.Country;
+
+import java.rmi.NoSuchObjectException;
 import java.util.ArrayList;
 
 /**
@@ -55,5 +57,15 @@ public class CountryList {
             }
         }
         System.out.println();
+    }
+
+    public Country searchCountry(String name) {
+
+        for (Country country : countryList) {
+            if (country.getName().equals(name)) {
+                return country;
+            }
+        }
+        return null;
     }
 }
