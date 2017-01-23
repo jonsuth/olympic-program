@@ -11,7 +11,11 @@ public class MedalTable {
     private ArrayList<Integer> silverMedals = new ArrayList<>();
     private ArrayList<Integer> bronzeMedals= new ArrayList<>();
     private ArrayList<Integer> totalMedals = new ArrayList<>();
-    private int day = 0;
+    public int day = 0;
+
+    private int goldMedalTotal;
+    private int silverMedalTotal;
+    private int bronzeMedalTotal;
 
     /**
      * Add gold, silver and bronze medal numbers to their respective Arraylist
@@ -21,9 +25,9 @@ public class MedalTable {
      * @param bronze
      */
     public void addMedals(int gold, int silver, int bronze) {
-        this.goldMedals.add(this.day, gold);
-        this.silverMedals.add(this.day, silver);
-        this.bronzeMedals.add(this.day, bronze);
+        this.goldMedals.add(this.day, gold + goldMedalTotal);
+        this.silverMedals.add(this.day, silver + silverMedalTotal);
+        this.bronzeMedals.add(this.day, bronze + bronzeMedalTotal);
         updateTotal();
     }
 
@@ -31,11 +35,14 @@ public class MedalTable {
      * Updates the total number of medals
      * Whenever any medals are added they must be added together
      * so that they can be added to the total and the day can be updated
+     * Updates the totals for gold, silver and bronze
      */
      private void updateTotal() {
-        this.totalMedals.add(this.day,
-                goldMedals.get(this.day) + silverMedals.get(this.day) + bronzeMedals.get(this.day));
-        this.day++;
+         this.goldMedalTotal = goldMedals.get(this.day);
+         this.silverMedalTotal = silverMedals.get(this.day);
+         this.bronzeMedalTotal = bronzeMedals.get(this.day);
+         this.totalMedals.add(this.day,this.goldMedalTotal + this.silverMedalTotal + this.bronzeMedalTotal);
+         this.day++;
     }
 
     /**
@@ -65,5 +72,9 @@ public class MedalTable {
                 return totalMedals.get(day);
         }
         return 0;
+    }
+
+    public int getTotal() {
+        return this.totalMedals.get(day-1);
     }
 }

@@ -1,15 +1,13 @@
 package main.country_list;
 
 import main.country.Country;
-
-import java.rmi.NoSuchObjectException;
 import java.util.ArrayList;
 
 /**
  * Created by Jon Suthakaran on 17/11/2016.
  * Country List class
  */
-public class CountryList {
+public class CountryList extends ArrayList {
     private ArrayList<Country> countryList = new ArrayList<>();
     private static int countriesCounter = 0;
     // Counter variable to keep count of total number of countries
@@ -44,7 +42,7 @@ public class CountryList {
     /**
      * Prints a formatted version of all countries along with every medal table associated with that country
      */
-    public void printAllCountries() {
+    public void printAllCountriesWithMedals() {
         for (Country country : countryList) {  // For country in country list
             System.out.println();
             System.out.println("Country " + countryList.indexOf(country) + ": " + country.getName());
@@ -59,6 +57,20 @@ public class CountryList {
         System.out.println();
     }
 
+    /**
+     * Prints a list of just all countries
+     */
+    public void printAllCountries() {
+        for (Country country : countryList) {
+            System.out.println("Country " + countryList.indexOf(country) + ": " + country.getName());
+        }
+    }
+
+    /**
+     * Searches for a country given the name of the country
+     * @param name country name
+     * @return Country
+     */
     public Country searchCountry(String name) {
 
         for (Country country : countryList) {
@@ -67,5 +79,9 @@ public class CountryList {
             }
         }
         return null;
+    }
+
+    public Country getCountry(int i) {
+        return countryList.get(i);
     }
 }
